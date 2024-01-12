@@ -29,16 +29,33 @@ namespace tdd_domain_modelling.CSharp.Main
             return true;
         }
         public bool RemoveProduct(string removeProduct) {
-            throw new NotImplementedException();
+            var productToRemove = products.FirstOrDefault(p => p.productName == removeProduct);
+
+            if (removeProduct != null)
+            {
+                products.Remove(productToRemove);
+                return true;
+            }
+
+            return false;
         }
         public float CalculateTotalCost()
         {
-            throw new NotImplementedException();
+            return products.Sum(p => p.productPrice);
         }
 
         public List<string> Receipt()
         {
-            throw new NotImplementedException();
+            var receipt = new List<string>();
+
+            foreach (var product in products)
+            {
+                receipt.Add($"{product.productName} - Quantity: 1 - Price: {product.productPrice:C}");
+            }
+
+            receipt.Add($"Total Cost: {CalculateTotalCost():C}");
+
+            return receipt;
         }
 
        

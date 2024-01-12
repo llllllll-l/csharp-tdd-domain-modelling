@@ -15,11 +15,11 @@ namespace tdd_domain_modelling.CSharp.Test {
         public void SetUp() {
             basket = new Basket();
 
-            basket.AddProduct(new Product("Product1", 10));
-            basket.AddProduct(new Product("Product2", 20));
-            basket.AddProduct(new Product("Product3", 12));
-            basket.AddProduct(new Product("Product4", 17));
-            basket.AddProduct(new Product("Product5", 11));
+            basket.AddProduct(new Product("Product1", 10f));
+            basket.AddProduct(new Product("Product2", 20f));
+            basket.AddProduct(new Product("Product3", 12f));
+            basket.AddProduct(new Product("Product4", 17f));
+            basket.AddProduct(new Product("Product5", 11f));
         }
 
 
@@ -55,7 +55,13 @@ namespace tdd_domain_modelling.CSharp.Test {
         [Test]
         public void TestReceipt() {
             List<string> receipt = basket.Receipt();
-
+            
+            Assert.AreEqual("Product1 - Quantity: 1 - Price: $10.00", receipt[0]);
+            Assert.AreEqual("Product2 - Quantity: 1 - Price: $20.00", receipt[1]);
+            Assert.AreEqual("Product3 - Quantity: 1 - Price: $12.00", receipt[2]);
+            Assert.AreEqual("Product4 - Quantity: 1 - Price: $17.00", receipt[3]);
+            Assert.AreEqual("Product5 - Quantity: 1 - Price: $11.00", receipt[4]);
+            Assert.AreEqual("Total Cost: $70.00", receipt[5]);
             
         }
     }
