@@ -32,4 +32,3 @@ In the stack trace itself, we see this line: `1.  at csharp_fundamentals_primiti
 
 ![](./assets/test-failure.png)
 
-Adding this line of text to test push from home
