@@ -44,16 +44,24 @@ namespace tdd_domain_modelling.CSharp.Main
             return products.Sum(p => p.productPrice);
         }
 
-        public List<string> Receipt()
-        {
-            var receipt = new List<string>();
+        public List<string> Receipt() {
+            List<string> receipt = new List<string>();
+            Dictionary<string, Tuple<int, Product>> items = new Dictionary<string, Tuple<int, Product>>();
 
-            foreach (var product in products)
-            {
-                receipt.Add($"{product.productName} - Quantity: 1 - Price: {product.productPrice:C}");
+            foreach (Product product in products) {
+                if (items.ContainsKey(product.productName)) {
+                    items[product.productName] = new Tuple<int, Product>(items[product.productName].Item1 + 1 ,product);
+                } else {
+                    items.Add(product.productName, new Tuple<int, Product>(1, product));
+                }
+                
             }
 
-            receipt.Add($"Total Cost: {CalculateTotalCost():C}");
+            foreach (KeyValuePair<string, Tuple<int, Product>> item in items) {
+                float tot = item.Value.Item2.productPrice * item.Value.Item1;
+                receipt.Add($"{item.Value.Item2.productName} {item.Value.Item2.productPrice:F2}x{item.Value.Item1} = {tot:F2}");
+            }
+            receipt.Add($"Total cost = {CalculateTotalCost():F2}");
 
             return receipt;
         }

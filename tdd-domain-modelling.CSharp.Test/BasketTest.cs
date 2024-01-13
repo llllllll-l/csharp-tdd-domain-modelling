@@ -56,12 +56,7 @@ namespace tdd_domain_modelling.CSharp.Test {
         public void TestReceipt() {
             List<string> receipt = basket.Receipt();
             
-            Assert.AreEqual("Product1 - Quantity: 1 - Price: $10.00", receipt[0]);
-            Assert.AreEqual("Product2 - Quantity: 1 - Price: $20.00", receipt[1]);
-            Assert.AreEqual("Product3 - Quantity: 1 - Price: $12.00", receipt[2]);
-            Assert.AreEqual("Product4 - Quantity: 1 - Price: $17.00", receipt[3]);
-            Assert.AreEqual("Product5 - Quantity: 1 - Price: $11.00", receipt[4]);
-            Assert.AreEqual("Total Cost: $70.00", receipt[5]);
+            Assert.That(receipt, Is.EqualTo(new List<string> {"Product1 10.00x1 = 10.00", "Product2 20.00x1 = 20.00", "Product3 12.00x1 = 12.00", "Product4 17.00x1 = 17.00", "Product5 11.00x1 = 11.00", "Total cost = 70.00"}));
             
         }
     }
